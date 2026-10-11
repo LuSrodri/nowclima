@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "nowclima",
+  "main": "src/worker/index.ts",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  "ai": { "binding": "AI" },
+  "kv_namespaces": [{ "binding": "CACHE" }],
+  "vars": {
+    // Limite diário de imagens geradas (protege a cota gratuita do Workers AI).
+    "IMAGE_DAILY_LIMIT": "150",
+    // Teto de bytes faturados por consulta ao BigQuery (WeatherNext 3).
+    "WN3_MAX_BYTES_BILLED": "50000000000"
+  },
+  "observability": { "enabled": true }
+}

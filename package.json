@@ -1,0 +1,24 @@
+{
+  "name": "nowclima",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Previsão hora a hora por WeatherNext 3 com imagem característica do lugar gerada por FLUX.2.",
+  "scripts": {
+    "dev": "concurrently -k -n web,api -c cyan,magenta \"vite\" \"wrangler dev --port 8787\"",
+    "build": "vite build",
+    "typecheck": "tsc -p tsconfig.worker.json && tsc -p tsconfig.client.json",
+    "deploy": "vite build && wrangler deploy",
+    "types": "wrangler types src/worker/worker-configuration.d.ts"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261011.1",
+    "concurrently": "^10.0.6",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4",
+    "wrangler": "^4.149.0"
+  },
+  "dependencies": {
+    "@photostructure/tz-lookup": "^11.7.0"
+  }
+}

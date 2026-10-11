@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>nowclima</title>
+    <meta name="description" content="Previsão hora a hora para os próximos 7 dias, pelo modelo WeatherNext 3, com uma imagem característica do seu lugar." />
+    <meta name="theme-color" content="#16202e" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap"
+    />
+  </head>
+  <body>
+    <header class="hero" data-cond="clear" data-daypart="day">
+      <div class="hero-sky" aria-hidden="true"></div>
+      <img class="hero-img" alt="" decoding="async" />
+      <div class="hero-shade" aria-hidden="true"></div>
+
+      <div class="topbar">
+        <a class="brand" href="/" aria-label="nowclima, início">now<span>clima</span></a>
+        <form class="search" role="search" autocomplete="off">
+          <label class="visually-hidden" for="q">Cidade, bairro ou distrito</label>
+          <span class="search-icon" aria-hidden="true"></span>
+          <input
+            id="q"
+            name="q"
+            type="search"
+            placeholder="Cidade, bairro ou distrito"
+            role="combobox"
+            aria-autocomplete="list"
+            aria-expanded="false"
+            aria-controls="suggestions"
+            spellcheck="false"
+            enterkeyhint="search"
+          />
+          <button class="locate" type="button" aria-label="Usar minha localização" title="Usar minha localização"></button>
+          <ul id="suggestions" class="suggestions" role="listbox" hidden></ul>
+        </form>
+        <div class="units" role="group" aria-label="Unidade de temperatura">
+          <button type="button" data-unit="C" aria-pressed="true">°C</button>
+          <button type="button" data-unit="F" aria-pressed="false">°F</button>
+        </div>
+      </div>
+
+      <div class="hero-body">
+        <div class="place">
+          <h1 class="place-name">Escolha um lugar</h1>
+          <p class="place-where">Digite o nome de uma cidade, bairro ou distrito para ver o tempo hora a hora.</p>
+        </div>
+        <div class="now" hidden>
+          <div class="now-temp"><span class="now-value">--</span><span class="now-icon"></span></div>
+          <p class="now-cond"></p>
+          <p class="now-range"></p>
+        </div>
+      </div>
+
+      <div class="hero-foot">
+        <p class="clock" aria-live="off"><time class="clock-time"></time> <span class="clock-date"></span></p>
+        <button type="button" class="prompt-toggle" hidden aria-expanded="false" aria-controls="prompt">Sobre a imagem</button>
+      </div>
+      <p id="prompt" class="prompt" hidden></p>
+    </header>
+
+    <main class="content" hidden>
+      <section class="readings" aria-label="Condições agora"></section>
+
+      <section class="timeline" aria-labelledby="timeline-title">
+        <div class="section-head">
+          <h2 id="timeline-title">Hora a hora</h2>
+          <nav class="day-jump" aria-label="Ir para o dia"></nav>
+        </div>
+        <div class="detail" aria-live="polite"></div>
+        <div class="ribbon" tabindex="0" aria-label="Previsão hora a hora, role para os lados"></div>
+        <p class="legend">
+          <span class="key key-mean"></span> Temperatura média do ensemble
+          <span class="key key-band"></span> Faixa provável (10–90%)
+          <span class="key key-rain"></span> Chuva na hora
+        </p>
+      </section>
+
+      <section class="week" aria-labelledby="week-title">
+        <div class="section-head"><h2 id="week-title">Próximos 7 dias</h2></div>
+        <ol class="days"></ol>
+      </section>
+
+      <footer class="source">
+        <p class="source-model"></p>
+        <p class="source-refresh"></p>
+        <p class="source-note"></p>
+      </footer>
+    </main>
+
+    <div class="toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

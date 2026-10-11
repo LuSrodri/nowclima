@@ -1,0 +1,9 @@
+# Copie para .dev.vars (local) ou use `wrangler secret put` (produção).
+# Sem estas variáveis o app usa o WeatherNext 2 (via Open-Meteo) como fallback.
+
+# JSON completo da service account do Google Cloud (uma linha só).
+GCP_SERVICE_ACCOUNT_JSON={"type":"service_account","project_id":"...","private_key":"-----BEGIN PRIVATE KEY-----\n...","client_email":"..."}
+# Projeto onde as consultas serão executadas/faturadas.
+GCP_PROJECT_ID=meu-projeto
+# Tabela do dataset vinculado (linked dataset) do WeatherNext 3.
+WN3_TABLE=meu-projeto.weathernext_3.weathernext_3_0_0_0p1deg
